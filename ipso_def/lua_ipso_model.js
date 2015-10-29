@@ -1,93 +1,95 @@
 // use js syntax
 
-// madatory
-var ipso = {
+// Basic and Mandatory Function Sets: dev and cfg
+var ipsoBase = {
     dev: {
-        mfg: 'sivann',
-        mdl: {
-            hw: 'v0.0.1',
-            sw: 'v0.0.1'
+        mfg: 'sivann',      // if=rp, string
+        mdl: {              // if=rp, string
+            hw: 'v0.0.1',   // if=rp, string
+            sw: 'v0.0.1'    // if=rp, string
         },
-        ser: 'SN00000001',
-        n: 'sensor',
-        // pwr: {
-        //     line: { voltage: null },
-        //     battery: { voltage: null },
-        //     harverster: { voltage: null }
-        // },
-        pwr: {
-            type: 1, // 0: line, 1: battery, 2: harverster
-            v: 3.3
+        ser: 'SN00000001',  // if=rp, string
+        n: 'device name',   // if=p,rp, string
+        pwr: {              // pwr/{#} if=rp, enum = [0: line, 1: battery, 2: harverster]
+            type: 1,
+            v: 3.3          // pwr/v/{#} if=s, decimal (Unit:V)
         },
-        time: 12345678, // now
-        uptime: 12345678,
+        time: 12345678,     // if=p,rp, integer (Unit:Sec)
+        uptime: 12345678,   // if=s, integer (Unit:Sec)
     },
     cfg: {
-        services: [],
+        services: [],       // </cfg/services>;rt="core.rd core.mp foo"
         stack: {
             phy: 'ipv4',
             mac: 'EC-12-34-56-78',
             net: '192.168.0.111',
             rtg: ''
         }
-    },
+    }
 };
 
 // Specific function set
+//-- /gpio/xxx/{#}
 var gpio = {
-    btn:,
-    din:,
-    dout:,
-    ain:,
-    aout:,
-    dimin,
+    btn: 28,    // if=s, integer
+    din: 1,     // if=s, boolean
+    dout:0,     // if=a, boolean
+    ain: 21.7,  // if=s, decimal (Unit: V)
+    aout:11.2,  // if=a, decimal (Unit: V)
+    dimin: 6,   // if=s, integer (Unit: 0-100%)
 };
 
+//-- /pwr/{#}/xxx
 var pwr = {
-    w:,
-    kwh:,
-    rel:,
-    dim:
+    w: 0.8,     // if=s, decimal (Unit: W)
+    kwh: 103.6, // if=s, decimal (Unit: kWh)
+    rel: 0,     // if=a, boolean
+    dim: 50     // if=a, integer (Unit: 0-100%)
 };
 
 var load = {
-    id:,
-    time:,
-    dur:,
-    crt:,
-    lap:,
-    dc:
+    id: 'event id',  // if=p, string
+    time: 12345678,  // if=p, integer (Unit:Sec)
+    dur: 15,         // if=p, integer (Unit:Min)
+    crt: 3,          // if=p, enum = [0: green, 1: level_1, 2: level_2, ..., 6: emergency, 7: planned_outage, 8: service_disconnect]
+    lap: 68,         // if=p, decimal (Unit: %)
+    dc: 40           // if=p, decimal (Unit: %)
 };
 
+//-- /sen/{#}
+//-- /sen/{#}/status
+// mot, con, generic are exclusive
 var sen = {
-    mot: {
-       count:,
-       status:, 
+    value: 100.2,  // if=s, decimal // generic
+    mot: {      
+       count: 20,  // if=s, interger
+       status: 1,  // if=s, boolean
     },
     con: {
-        count:,
-        status:
-    },
-    // generic
+        count: 13, // if=s, interger
+        status: 0  // if=s, boolean
+    }    
 };
 
+//-- /lt/{#}/on
+//-- /lt/{#}/dim
 var lt = {
-    on:,
-    dim:
+    on: 1,      // if=a, boolean
+    dim: 20     // if=a, integer (Unit: 0-100%)
 };
 
 var msg = {
-    status:,
-    alarms:,
-    disp:
+    status: 'good',     // if=p,rp, string
+    alarms: 'no issue', // if=p,rp, string
+    disp: 'welcome'     // if=p,rp, string
 };
 
 var loc = {
-    gps:,
-    xy:,
-    sem:,
-    fix:,
-    per:
+    gps: "1000, 1221", // if=s, string (Uint: Lon, Lat)
+    xy: "16, 21",      // if=s, string (Uint: X, Y)
+    sem: 'bedroom',    // if=s, string (Uint: X, Y)
+    fix: 1,            // if=s, boolean
+    per: 60            // if=p, integer (Unit: Sec)
 };
 
 // IPSO high-level smart objects
