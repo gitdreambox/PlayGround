@@ -1,3 +1,37 @@
+
+
+var LWM2M_ObjectId_Defined_By_OMA = {
+    LWM2M_Security: 0,
+    LWM2M_Server: 1,
+    Access_Control: 2,
+    Device: 3,                  // V
+    Connectivity_Monitoring: 4,
+    Firmware: 5,
+    Location: 6,
+    Connectivity_Statistics: 7
+};
+
+// Device resouces
+var resrc_id = {
+    Manufacturer: 0,    // V, R, S, O, String
+    DeviceType: 17,     // R, S, O, String
+    ModelNumber: 1,     // V, R, S, O, String
+    SerialNumber: 2,    // V, R, S, O, String
+    HardwareVersion: 18,// V, R, S, O, String
+    FirmwareVersion: 3, // R, S, O, String
+    SoftwareVersion: 19,// V, R, S, O, String
+    Reboot: 4,          // E, S, M
+    FactoryReset: 5,    // E, S, O
+    AvailablePowerSource: 6,    // R, M, O, Integer, 0-7: 0 DC, 1, Intern Batt, 2 Ext Batt, 4 Power Over Ether, 5 USB, 6 AC, 7 Solar
+    PowerSourceVoltage: 7,      // R, M, O, Integer (mV)
+    PowerSourceCurrent: 8,      // R, M, O, Integer (mA)
+    BatteryLevel: 9,            // R, S, O, Integer, 0-100 (%)
+    BatteryStatus: 20,          // R, S, O, Integer, 0-6, 0 Norm, 1 Charging, 2 Charge Complete, 3 Damage, 4 Low Batt, 5 Not Installed, 6 Unknow
+    MemoryFree: 10,             // R, S, O, Integer (KB)
+    MemoryTotal: 21,            // R, S, O, Integer (KB)
+    ErrorCode: 11,      // R, M, M, Integer, 0 No err, 1 Low Batt, 2 Ext Power off, 3 GPS module fail, 4 Low Rx, 4 Out of Mem
+};
+
 var object_id = {
     DigitalInput: 3200,
     DigitalOutput: 3201,

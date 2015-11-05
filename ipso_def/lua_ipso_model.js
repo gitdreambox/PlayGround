@@ -1,15 +1,20 @@
 // use js syntax
 
 // Basic and Mandatory Function Sets: dev and cfg
+// object list
+//  'dev', 'dev/0', 'dev/0/mfg', 'dev/0/mdl', 'dev/0/mdl/hw', 'dev/0/mdl/sw'
+//  'cfg', 'cfg/0', 'cfg/0/stack', 'cfg/0/stack/phy'
+
 var ipsoBase = {
-    dev: {
+    dev: { // <= objId = 3
         mfg: 'sivann',      // if=rp, string
         mdl: {              // if=rp, string
+            num: 'xxxx',    // if=rp, string
             hw: 'v0.0.1',   // if=rp, string
             sw: 'v0.0.1'    // if=rp, string
         },
         ser: 'SN00000001',  // if=rp, string
-        n: 'device name',   // if=p,rp, string
+        n: 'device name',   // if=p,rp, string => smart meter, ...
         pwr: {              // pwr/{#} if=rp, enum = [0: line, 1: battery, 2: harverster]
             type: 1,
             v: 3.3          // pwr/v/{#} if=s, decimal (Unit:V)
@@ -17,7 +22,7 @@ var ipsoBase = {
         time: 12345678,     // if=p,rp, integer (Unit:Sec)
         uptime: 12345678,   // if=s, integer (Unit:Sec)
     },
-    cfg: {
+    cfg: { // <= objId = 3
         services: [],       // </cfg/services>;rt="core.rd core.mp foo"
         stack: {
             phy: 'ipv4',
