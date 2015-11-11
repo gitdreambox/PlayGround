@@ -21,20 +21,45 @@ var pubSubSettings = {
 
 var moscaSettings = {
     port: 1883,
-    backend: pubSubSettings,
+    //backend: pubSubSettings,
     persistence: {
-        factory: mosca.persistence.Redis
+         factory: mosca.persistence.LevelUp,
+         path: './mqdb'
     }
 };
 
 var server = new mosca.Server(moscaSettings);
+var db = server.persistence.db;
+//var db = new mosca.persistence.LevelUp({ path: "./mqdb2" });
+//db.wire(server);
+db.put('name', 'LevelUP', function (err) {
+  if (err) return console.log('Ooops!', err); // some kind of I/O error 
+ 
+  // 3) fetch by key 
+  db.get('name', function (err, value) {
+    if (err) return console.log('Ooops!', err); // likely the key was not found 
+ 
+    // ta da! 
+    console.log('name=' + value);
+  });
+});
+
+// server.persistClient = function (client) {
+
+// };
+// console.log(db);
 
 server.on('ready', function () {
-    console.log('Mosca server is up and running.')
+    console.log('Mosca server is up and running.');
+
 });
 
 server.on('clientConnected', function (client) {
     console.log('client connected', client.id);
+    //console.log(client);
+    server.restoreClientSubscriptions(client, function (r) {
+        console.log('restored: ' + r);
+    });
 });
 
 server.on('published', function(packet, client) {
