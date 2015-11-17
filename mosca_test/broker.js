@@ -63,5 +63,5 @@ server.on('clientConnected', function (client) {
 });
 
 server.on('published', function(packet, client) {
-    console.log('Published', packet.payload);
+    console.log('Published', packet.payload.toString());
 });
