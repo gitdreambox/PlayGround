@@ -1,6 +1,8 @@
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/react.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 </head>
 
 <body>
@@ -8,17 +10,28 @@
 </body>
 
 <script type="text/jsx">
-    // Define a 'class'
-    var HelloWorld = React.createClass({
+    var Badge = React.createClass({
         render: function () {
-            return <div>
-                Hello World!
-            </div>
+            return (
+                <button>
+                    {this.props.title} - {this.props.number}
+                </button>
+            );
         }
     });
-    // React, please render this class
-    var element = React.createElement(HelloWorld);
-    // React, after you render this class, please place it in my body tag
+
+    var Form = React.createClass({
+        render: function () {
+            return (
+                <div>
+                    <Badge title={this.props.title} number={this.props.number} />
+                </div>
+            );
+        }
+    });
+
+    var opts = { title: 'Inbox', number: 6};
+    var element = React.createElement(Form, opts);
     React.render(element, document.body);
 </script>
 
