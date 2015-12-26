@@ -3,17 +3,18 @@
 <html>
     <head>
         <script type="text/javascript" src="js/jquery-2.1.4.js"></script>
-        <script type="text/javascript" src="js/handlebars-v4.0.5.js"></script>
-        <script type="text/javascript" src="app.js"></script>
-        <title></title>
+        <script type="text/javascript" src="js/handlebars.runtime-v4.0.5.js"></script>
+        <script type="text/javascript" src="user.js"></script>
+        <title>Handlebar Precompiled Template</title>
     </head>
 
     <body>
+        <div id="user"></div>
     </body>
+    <script type="text/javascript">
+        var compiledTemplate = Handlebars.templates['user.hbs'],
+            html = compiledTemplate({ firstName: 'Hedy', lastName: 'Wang' });
 
-    <script id="page-template" type="text/x-handlebars-templates">
-        <div>
-            {{displayName this 'Hello,'}}
-        </div>
+        document.getElementById('user').innerHTML = html;
     </script>
 </html>
