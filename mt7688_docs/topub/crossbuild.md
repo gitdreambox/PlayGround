@@ -1,4 +1,4 @@
-## Cross-build node.js module 
+## Cross-build node.js modules/addons 
 
 ### Aim
 
@@ -10,7 +10,7 @@ Note: When you encounter difficulty in installing a node module which require re
 
 ### Step up the environment on a host PC
 * OS: Ubuntu 14.04 LTS x86_64
-* Node version: 0.12.7 (you can use **n** or **nvm** to switch node version, I am using n)
+* Node version: 0.12.7 (you can use **n** or **nvm** to switch node version, I am using **n**)
 
     ``` bash
     $ sudo n 0.12.7
@@ -33,8 +33,6 @@ Note: When you encounter difficulty in installing a node module which require re
 
     ``` bash
     $ git clone https://github.com/simenkid/mt7688-cross.git
-    $ cd mt7688-cross
-    ~/mt7688-cross $ 
     ```
 
 * Switch into the working directory `mt7688-cross/`, and invoke the script `./create_env.sh` to create the cross-compiling environment. This step may take you around 20 minutes, have a cup of coffee and be patient.  
@@ -45,22 +43,23 @@ Note: When you encounter difficulty in installing a node module which require re
     ~/mt7688-cross $ ./create_env.sh
     ```
 
-Note: Once this step is successfully done, the environment is ready for your later use. Every time you want to cross-compile a node native module, just come into the working directory `mt7688-cross/` and install a module with script `npm_install.sh`, there is no need to rebuild the environment again.  
+    * Note: Once this step is successfully done, the environment is ready for your later use. Every time you want to cross-compile a node native module, just come into the working directory `mt7688-cross/` and install a module with script `npm_install.sh`, there is no need to rebuild the environment again.  
 
-### Steps of installing a cross-compiled node native module/add-on
+### Steps of installing a node native module/add-on to Linkit Smart 7688  
+
 * In the working directory, use script `npm_install.sh` to install a cross-build node module.  
 
     ``` bash
     ~/mt7688-cross $ ./npm_install.sh foo-module
     ```
 
-or install a specified version
+    * or install a specified version  
 
     ``` bash
     ~/mt7688-cross $ ./npm_install.sh foo-module@version
     ```
 
-Let's take installation of `serialport` module as an example:
+    * Let's take installation of `serialport` module as an example:  
 
     ``` bash
     ~/mt7688-cross $ ./npm_install.sh serialport
@@ -68,25 +67,25 @@ Let's take installation of `serialport` module as an example:
 
 ![](crossbuild_serialport.jpg)
 
-* The cross-built module is zipped in `mt7688-cross/node_modules_mips`.  
+* The cross-built module is zipped in `mt7688-cross/node_modules_mips` folder.  
 
     ``` bash
     ~/mt7688-cross $ cd node_modules_mips
     ~/mt7688-cross/node_modules_mips $ ls
     ```
 
-* Upload the compressed module to Linkit Smart 7688.
+* Upload the compressed module to Linkit Smart 7688.  
     
     ``` bash
-    ~/mt7688-cross/node_modules_mips $ scp foo-module-x.y.z.tar.gz root@192.168.0.100:/root/app
+    ~/mt7688-cross/node_modules_mips $ scp foo-module-x.y.z.tar.gz root@192.168.0.109:/root/app
     ```
 ![](crossbuild_scp_to_7688.jpg)
 
-Note: Replace `192.168.0.100` to which your Linkit Smart 7688 allocates. Replace the remote folder `/root/app` to where you like to put this module to.  
+    * Note: Replace `192.168.0.100` to which your Linkit Smart 7688 allocates. Replace the remote folder `/root/app` to where you like to put this module to.  
 
 * ssh into Linkit Smart 7688.
     
-* Switch into the folder where you just uploaded to, and uncompress the zipped file.  
+* Switch into the folder where you just uploaded to, and uncompress the zipped file into `node_modules/`.  
 
     ``` bash 
     > cd app
@@ -95,6 +94,6 @@ Note: Replace `192.168.0.100` to which your Linkit Smart 7688 allocates. Replace
 
 ![](crossbuild_uncompress.jpg)
 
-* And now, you are done! Write an `app.js` to test your module. Cheers!
+* And now, you are ready to write an `app.js` to test your module. Cheers!
 
         
