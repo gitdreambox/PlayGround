@@ -43,7 +43,7 @@
     ~/mt7688-cross $ ./create_env.sh
     ```
 
-    * 附註： 一旦此步驟將建置環境準備好之後，以後每次你想交叉編譯一支 node 原生模組，就進來此工作目錄 `mt7688-cross/` 執行 `npm_install.sh` 來安裝模組。你不需要再次執行 `./create_env.sh`.  
+    * 附註： 一旦此步驟將建置環境準備好之後，以後每次你想交叉編譯 node 原生模組，就進來此工作目錄 `mt7688-cross/` 中執行 `npm_install.sh` 來安裝模組即可。你不需要重新執行 `./create_env.sh`。  
 
 ### 將原生模組安裝至 Linkit Smart 7688 的步驟  
 
@@ -64,7 +64,6 @@
     ``` bash
     ~/mt7688-cross $ ./npm_install.sh serialport
     ```
-
 ![](crossbuild_serialport.jpg)
 
 * 交叉編譯完成的模組，會以壓縮檔的形式存放於 `mt7688-cross/node_modules_mips` 目錄底下。  
@@ -81,7 +80,7 @@
     ```
 ![](crossbuild_scp_to_7688.jpg)
 
-    * 附註： 請將 `192.168.0.100` 換成你的 Linkit Smart 7688 實際使用的 IP。請將遠端目錄 `/root/app` 更改為你想上傳過去的目錄路徑。  
+    * 附註： 請將 `192.168.0.109` 換成你的 Linkit Smart 7688 實際使用的 IP。請將 `/root/app` 更改為你想上傳過去的遠端目錄路徑。  
 
 * ssh 進入 Linkit Smart 7688。
     
@@ -91,7 +90,6 @@
     > cd app
     ~/app > tar -xvf foo-module-x.y.z.tar.gz -C node_modules/
     ```
-
 ![](crossbuild_uncompress.jpg)
 
 * 現在，就跟使用一般的模組一樣，你可以開始撰寫一支 `app.js` 來測試你所交叉編譯完的 node 原生模組了。

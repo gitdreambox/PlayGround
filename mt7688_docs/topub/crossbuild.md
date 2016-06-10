@@ -64,7 +64,6 @@ Note: When you encounter difficulty in installing a node module which require re
     ``` bash
     ~/mt7688-cross $ ./npm_install.sh serialport
     ```
-
 ![](crossbuild_serialport.jpg)
 
 * The cross-built module is zipped in `mt7688-cross/node_modules_mips` folder.  
@@ -81,7 +80,7 @@ Note: When you encounter difficulty in installing a node module which require re
     ```
 ![](crossbuild_scp_to_7688.jpg)
 
-    * Note: Replace `192.168.0.100` to which your Linkit Smart 7688 allocates. Replace the remote folder `/root/app` to where you like to put this module to.  
+    * Note: Replace `192.168.0.109` to which your Linkit Smart 7688 allocates. Replace the remote folder `/root/app` to where you like to put this module to.  
 
 * ssh into Linkit Smart 7688.
     
@@ -91,7 +90,6 @@ Note: When you encounter difficulty in installing a node module which require re
     > cd app
     ~/app > tar -xvf foo-module-x.y.z.tar.gz -C node_modules/
     ```
-
 ![](crossbuild_uncompress.jpg)
 
 * And now, you are ready to write an `app.js` to test your module. Cheers!
